@@ -32,6 +32,7 @@ export const RegisterUser = async (
 
     return res.status(201).json({
       message: "please check your mail for  OTP",
+      data:email
     });
   }
 
@@ -51,9 +52,12 @@ export const verifyUser = async (
 ) => {
   const { email, otpCode } = req.body;
 
+  console.log(email,otpCode);
+  
+
   const otp = await Otp.findOne({ email: email, otp: otpCode });
   if (!otp) {
-    res.status(404).json({
+    res.status(403).json({
       message: "incorrect otp",
     });
   }
