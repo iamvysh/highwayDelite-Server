@@ -80,6 +80,8 @@ export const loginUser = async (
 ) => {
   const { email, password } = req.body;
 
+  
+
   const user = await User.findOne({ email, isVerified: true });
 
   if (!user) {
